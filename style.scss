@@ -1,0 +1,137 @@
+.container {
+    padding: 7% 0;
+    position: relative;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  .clock {
+    position: relative;
+    height: 100%;
+    
+    &__big-tick {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      border-radius: 4px;
+      height: 50%;
+      width: 10px;
+      transform-origin: bottom center;
+      
+      @for $i from 0 to 12 {
+        &--#{$i + 1} {
+          transform: translateX(-50%) rotate($i * 30deg);
+          background-image: linear-gradient(hsl($i * 30, 90%, 50%) 1%, transparent 14%);
+        }
+      }
+    }
+    
+    &__small-tick {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      border-radius: 5px;
+      background-image: linear-gradient(rgba(black, .42) 1%, transparent 9%);
+      height: 48.7%;
+      width: 1px;
+      transform-origin: bottom center;
+      
+      $currDeg: 6;
+      @for $i from 0 to 48 {
+        &--#{$i + 1} {
+          transform:  translateX(-50%) rotate($currDeg * 1deg);
+        }
+        
+        @if $i % 4 == 3 {
+          $currDeg: $currDeg + 12;
+        }@else {
+          $currDeg: $currDeg + 6;
+        }
+        
+      }
+    }
+    
+  }
+  
+  /////SVG TICK
+  
+  // .tick {
+  //   display: block;
+  //   background: red;
+  //   transform-origin: 0 200%;
+  //   @for $i from 0 to 12 {
+  //     &--#{$i} {
+  //       color: black;
+  //       transform: rotate($i * 30deg);
+  //     }
+  //   }
+  // }
+  
+  .sec-hand,
+  .small-hand,
+  .big-hand,
+  .center-up,
+  .center-bottom {
+    position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
+  }
+  
+  .sec-hand {
+    left: 50%;
+    bottom: 50%;
+    width: 1.5px;
+    // transform: translateX(-50%);
+    transform-origin: bottom;
+    height: 41%;
+    background-color: rgba(red, .4);
+  }
+  
+  .small-hand {
+    left: 50%;
+    bottom: 50%;
+    width: 4px;
+    height: 20%;
+    // transform: translateX(-50%);
+    transform-origin: bottom;
+    background-color: black;
+  }
+  
+  .big-hand {
+    left: 50%;
+    bottom: 50%;
+    width: 3px;
+    height: 39%;
+    // transform: translateX(-50%);
+    transform-origin: bottom;
+    background-color: rgba(black, .65);
+  }
+  
+  .center-bottom,
+  .center-up {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .center-bottom {
+    width: 7.5rem;
+    height: 7.5rem;
+    box-shadow: -2px -1px 3px -2px rgba(black, .8765425),
+      -1px -1px 3px -2px rgba(black, .4),
+      inset 0 0 0 2.95rem rgba(black, .02),
+      inset 0 0 0 2.75rem rgba(black, .086),
+      inset 0 0 0 2.55rem rgba(black, .04),
+      ;
+    border-radius: 100px;
+    background-color: none;
+  }
+  
+  .center-up {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: black;
+    box-shadow: 0 0 0 4px hsl(360, 50%, 50%), 0 0 0 6px darken(silver, 20%), 0 0 0 7px rgba(black, .55);
+    border-radius: 100px;
+  }
